@@ -25,7 +25,8 @@ const pokemonList = [
 ];
 import "./App.css";
 import PokemonCard from "./components/PokemonCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import NavBar from "./components/NavBar";
 
 function App() {
@@ -36,11 +37,24 @@ function App() {
   const handleClick2 = () => {
     setPokemonIndex(pokemonIndex + 1);
   };
+  useEffect(() => {
+    alert("hello pokemon trainer :)");
+  }, []);
+  const handleSetPokemonIndex = (index) => {
+    // Utiliser une ternaire pour afficher l'alerte si "pikachu" est sélectionné
+    pokemonList[index].name === "pikachu"
+      ? alert("pika pikachu !!!")
+      : setPokemonIndex(index);
+  };
+
   return (
     <>
       <div>
         <PokemonCard pokemon={pokemonList[pokemonIndex]} />
-        <NavBar pokemonList={pokemonList} setPokemonIndex={setPokemonIndex} />
+        <NavBar
+          pokemonList={pokemonList}
+          setPokemonIndex={handleSetPokemonIndex}
+        />
       </div>
     </>
   );
